@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @publication %>
+
+<div>
+
+  <% if user_signed_in? %>
+
+    <% if current_user.id == @publication.user_id %>
+        <%= link_to "Editar this publication", edit_publication_path(@publication) %> |
+        <%= button_to "Destroy this publication", @publication, method: :delete %>
+    <% end %>
+  <% end %>
+
+  <%= link_to "Volver to publications", publications_path %>
+</div>
