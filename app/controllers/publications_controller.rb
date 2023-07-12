@@ -1,6 +1,21 @@
 class PublicationsController < ApplicationController
   before_action :set_publication, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except: [:index]
+  #before_action :authenticate_user!, except: [:index]
+
+  before_action only: [:new, :create] do
+    authorize_request(["author", "admin"])
+  end
+
+  before_action only: [:edit, :update, :destroy] do
+    authorize_request(["admin"]) #solo admin pueden editar actualizar y destruir
+  end
+
+  def authorize_request(kind = nil)
+    unless kind.include?(current_user.role)
+        redirect_to publications_path, notice: "tu no estas autorizado para esta accion"
+    end
+  end
+
   # GET /publications or /publications.json
   def index
     @publications = Publication.all
