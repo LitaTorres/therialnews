@@ -16,17 +16,36 @@
     <%= form.text_field :content %>
   </div>
 
+ <!--
   <div>
     <%= form.label :user_id, style: "display: block" %>
     <%= form.text_field :user_id %>
   </div>
 
+  hidden para que se mantenga oculto y la vista new no me lo pida y se haga x defecto
+--> 
+
+  <div>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+
+  <!--
   <div>
     <%= form.label :publication_id, style: "display: block" %>
     <%= form.text_field :publication_id %>
+  </div>
+  -->
+
+  <div>
+    <%= form.hidden_field :publication_id, value: current_user.id %>
   </div>
 
   <div>
     <%= form.submit %>
   </div>
 <% end %>
+
+
+
+
+

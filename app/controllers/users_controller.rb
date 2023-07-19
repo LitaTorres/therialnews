@@ -1,4 +1,5 @@
 class UsersController < Devise::ConfirmationsController
+   #class UsersController < ApplicationController
     before_action :authorize_admin, only: [:edit_role, :update_role]
     
     def edit_role
@@ -21,4 +22,8 @@ class UsersController < Devise::ConfirmationsController
         redirect_to publications_path, notice: "No estás autorizado para esta acción."
         end
     end
+
+    def index
+    end
+
 end

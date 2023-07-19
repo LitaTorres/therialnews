@@ -231,7 +231,7 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
-  devise (~> 4.9)
+  devise (~> 4.9, >= 4.9.2)
   figaro (~> 1.2)
   importmap-rails
   jbuilder

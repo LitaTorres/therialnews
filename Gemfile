@@ -71,6 +71,6 @@ group :test do
   gem "webdrivers"
 end
 
-gem "devise", "~> 4.9"
+gem 'devise', '~> 4.9', '>= 4.9.2'
 
 gem 'figaro', '~> 1.2'

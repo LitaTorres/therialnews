@@ -1,6 +1,22 @@
-<h1>Editar Rol de Usuario</h1>
+<h1>Editarrrr Rol de Usuario</h1>
 
 <%= form_for @user, url: update_role_user_path(@user), method: :patch do |f| %>
   <%= f.select :role, User.roles.keys.map { |r| [r.titleize, r] }, {}, class: 'form-control' %>
   <%= f.submit 'Guardar', class: 'btn btn-primary' %>
 <% end %>
+
+<!--
+<%= form_for @user, url: update_role_user_path(user_id: @user.id), method: :patch do |f| %>
+
+
+<div class="field">
+  <%= f.label :name %><br />
+  <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+</div>
+
+
+<div class="actions">
+  <%= f.submit "Sign up" %>
+</div>
+<% end %>
+--->

@@ -26,18 +26,26 @@
             </li>
 
             <% if user_signed_in? %>
-                  <li class="nav-item">
+                  <li class="nav-item"> <!-- clic al name y se va al editar-->
                     <%= link_to current_user.name, edit_user_registration_path, class:"nav-link" %> </a>
                   </li>
                   <li class="nav-item">
                     <%= link_to "Publicaciones", publications_path, class:"nav-link" %>
+                  </li> <!---recordar que el curren es como un link to-->
+                  <% if current_user.admin? %> 
+                  <li class="nav-item"> <!-- el current user es el que proporciona el id de la url-->
+                    <%= link_to "Asignar roles", edit_role_user_path(current_user), class:"nav-link" %>
                   </li>
+                <% end %> 
                   <li class="nav-item">
                     <%= link_to "Salir", destroy_user_session_path, class:"nav-link" %>
                   </li>
             <% else %>
                   <li class="nav-item">
-                    <%= link_to "Login", new_user_session_path, class:"nav-link" %>
+                    <%= link_to "Publicaciones", publications_path, class:"nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "Iniciar sesión", new_user_session_path, class:"nav-link" %>
                   </li>
                   <li class="nav-item">
                     <%= link_to "Registro", new_user_registration_path, class:"nav-link" %>

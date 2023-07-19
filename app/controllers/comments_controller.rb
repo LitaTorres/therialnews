@@ -1,5 +1,20 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+
+  before_action only: [:new, :create] do
+    authorize_request(["author", "admin"])
+  end
+
+  before_action only: [:edit, :update, :destroy] do
+    authorize_request(["admin", "author"]) #solo admin y autor pueden editar actualizar y destruir
+  end
+
+  def authorize_request(kind = nil)
+    unless kind.include?(current_user.role) || current_user.admin? #Asi el admin tiene acceso a todo
+        redirect_to publications_path, notice: "tu no estas autorizado para esta accion"
+    end
+  end
 
   # GET /comments or /comments.json
   def index
@@ -16,7 +31,7 @@ class CommentsController < ApplicationController
   end
 
   # GET /comments/1/edit
-  def edit
+  def edit #ESTE PEDAZO DE EDIT FUE AGREGAFO HOY 19 DE JULIO
   end
 
   # POST /comments or /comments.json

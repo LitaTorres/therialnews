@@ -1,18 +1,18 @@
 class PublicationsController < ApplicationController
   before_action :set_publication, only: %i[ show edit update destroy ]
-  #before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index ]
 
   before_action only: [:new, :create] do
     authorize_request(["author", "admin"])
   end
 
   before_action only: [:edit, :update, :destroy] do
-    authorize_request(["admin"]) #solo admin pueden editar actualizar y destruir
+    authorize_request(["admin", "author"]) #solo admin y autor pueden editar actualizar y destruir
   end
 
   def authorize_request(kind = nil)
-    unless kind.include?(current_user.role)
-        redirect_to publications_path, notice: "tu no estas autorizado para esta accion"
+    unless kind.include?(current_user.role) || current_user.admin? #Asi el admin tiene acceso a todo
+        redirect_to publications_path, notice: "tuu no estas autorizado para esta accion"
     end
   end
 
@@ -23,6 +23,9 @@ class PublicationsController < ApplicationController
 
   # GET /publications/1 or /publications/1.json
   def show
+    @publication = Publication.find(params[:id])
+    @comments = @publication.comments.includes(:user)
+    @comment = Comment.new
   end
 
   # GET /publications/new
@@ -81,6 +84,6 @@ class PublicationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def publication_params
-      params.require(:publication).permit(:title, :image, :description, :user_id)
+      params.require(:publication).permit(:title, :image, :description, :user_id, :_destroy)
     end
 end
