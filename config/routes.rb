@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :comments
-  resources :publications
+  resources :publications do
+    resources :comments, only: [:create]
+  end
+  
   devise_for :users, controller:{
     sessions: "users/sessions",
     registrations: "users/registrations"

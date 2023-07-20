@@ -5,8 +5,8 @@
 <div>
 
   <% if user_signed_in? %>
-<!-- se agrega tb lo de curren user admin para que tb pueda ver los enlaces-->
-    <% if current_user.admin? || current_user.id == @publication.user_id %>
+<!--  < if current_user.admin? || current_user.id == @publication.user_id >se agrega tb lo de curren user admin para que tb pueda ver los enlaces-->
+    <% if current_user.id == @publication.user_id %>
         <%= link_to "Editar this publication (enlace vista show de publication)", edit_publication_path(@publication) %> |
         <%= button_to "Destroy this publication(enlace vista show de publication)", @publication, method: :delete %>
     <% end %>
@@ -15,43 +15,21 @@
   <%= link_to "Volver to publications", publications_path %>
 </div>
 
-<% @comments.each do |comment| %>
- <% if current_user.admin? || current_user.id == comment.user_id %>
-  <p><strong>Nombreee: </strong><%= comment.user.name %></p>
-  <p><strong>Contenido: </strong><%= comment.content %></p>
-  <%= link_to "Editar este comentario", edit_comment_path(comment) %> <!--- esto para editar y eliminar comentarios-->
-  <%= button_to "Destroy este comentario", comment, method: :delete %>
+<% if @comments.any? %>
+  <% @comments.each do |comment| %>
+      <p><strong>Nombreee: </strong><%= comment.user.name %></p>
+      <p><strong>Contenido: </strong><%= comment.content %></p>
+      <%= link_to "Editar este comentario", edit_comment_path(comment) %> <!--- esto para editar y eliminar comentarios-->
+      <%= button_to "Destroy este comentario", comment, method: :delete %>
   <% end %>
+<% else %>
+  <p>No hay comentarios aún para esta publicación.</p>
 <% end %>
 
-<!--en lugar de usar @comment (colección completa de comentarios) se debe usar comment para hacer referencia al comentario especifico en el ciclo-->
-
-<%= form_with model: @comment, url: comments_path, local: true do |form| %>
+<%= form_with(model: @comment, url: publication_comments_path(@publication)) do |form| %>
   <div>
     <%= form.label :content, style: "display: block" %>
-    <%= form.text_field :content %>
-  </div>
-
-  <!--
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
--->
-
-  <div>
-    <%= form.hidden_field :user_id, value: current_user.id %>
-  </div>
-
-  <!--
-  <div>
-    <%= form.label :publication_id, style: "display: block" %>
-    <%= form.text_field :publication_id %>
-  </div>
-  -->
-
-  <div>
-    <%= form.hidden_field :publication_id, value: @publication.id %>
+    <%= form.text_area :content %>
   </div>
 
   <div>

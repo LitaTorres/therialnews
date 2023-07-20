@@ -1,20 +1,19 @@
 class PublicationsController < ApplicationController
   before_action :set_publication, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except: [:index ]
-
+  before_action :authenticate_user!, except: [:index, :show]
   before_action only: [:new, :create] do
-    authorize_request(["author", "admin"])
+    authorize_request(["normal_user", "author", "admin"])
   end
 
   before_action only: [:edit, :update, :destroy] do
-    authorize_request(["admin", "author"]) #solo admin y autor pueden editar actualizar y destruir
+    authorize_request(["author", "admin"]) #solo admin y autor pueden editar actualizar y destruir
   end
 
-  def authorize_request(kind = nil)
-    unless kind.include?(current_user.role) || current_user.admin? #Asi el admin tiene acceso a todo
-        redirect_to publications_path, notice: "tuu no estas autorizado para esta accion"
-    end
-  end
+  #def authorize_request(kind = nil)
+   # unless kind.include?(current_user.role) || current_user.admin? #Asi el admin tiene acceso a todo
+    #    redirect_to publications_path, notice: "tuu no estas autorizado para esta accion"
+    #end
+  #end
 
   # GET /publications or /publications.json
   def index
@@ -24,8 +23,9 @@ class PublicationsController < ApplicationController
   # GET /publications/1 or /publications/1.json
   def show
     @publication = Publication.find(params[:id])
-    @comments = @publication.comments.includes(:user)
+    #@comments = @publication.comments.includes(:user)
     @comment = Comment.new
+    @comments = @publication.comments
   end
 
   # GET /publications/new
@@ -41,6 +41,8 @@ class PublicationsController < ApplicationController
   def create
     @publication = Publication.new(publication_params)
     @publication.user_id = current_user.id
+    @comment = Comment.new
+    @comment.user = current_user
 
     respond_to do |format|
       if @publication.save
@@ -85,5 +87,5 @@ class PublicationsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def publication_params
       params.require(:publication).permit(:title, :image, :description, :user_id, :_destroy)
-    end
+    end # params.require(:publication).permit(:image, :title, :description)
 end
