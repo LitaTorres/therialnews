@@ -13,7 +13,7 @@ class PublicationsController < ApplicationController
     unless kind.include?(current_user.role) || current_user.admin? #Asi el admin tiene acceso a todo
        redirect_to publications_path, notice: "Lamentablemente no estás autorizado para esta acción"
     end
-  #end
+  end
 
   # GET /publications or /publications.json
   def index
