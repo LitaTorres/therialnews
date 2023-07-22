@@ -1,7 +1,7 @@
 <%= form_with(model: publication) do |form| %>
   <% if publication.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(publication.errors.count, "error") %> prohibited this publication from being saved:</h2>
+      <h2><%= pluralize(publication.errors.count, "error") %> Prohibido guardar esta publicación: </h2>
 
       <ul>
         <% publication.errors.each do |error| %>
@@ -11,19 +11,19 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div style="margin-bottom: 10px;">
+    <%= form.label :title, "Título", style: "display: block; font-weight: bold;" %>
+    <%= form.text_field :title, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :image, style: "display: block" %>
-    <%= form.text_field :image %>
+  <div style="margin-bottom: 10px;">
+    <%= form.label :image, "Url de la imagen", style: "display: block; font-weight: bold;" %>
+    <%= form.text_field :image, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div style="margin-bottom: 10px;">
+    <%= form.label :description, "Descripción de la publicación", style: "display: block; font-weight: bold;" %>
+    <%= form.text_area :description, class: "form-control" %>
   </div>
 
   <!--
@@ -37,7 +37,7 @@
   </div>
 
 
-  <div>
-    <%= form.submit %>
+  <div style="margin-top: 10px;">
+    <%= form.submit "Enviar", class: "btn btn-primary" %>
   </div>
 <% end %>

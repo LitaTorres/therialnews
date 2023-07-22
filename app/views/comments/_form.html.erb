@@ -1,7 +1,7 @@
 <%= form_with(model: comment) do |form| %>
   <% if comment.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+      <h2><%= pluralize(comment.errors.count, "error") %> Prohibido guardar este comentario:</h2>
 
       <ul>
         <% comment.errors.each do |error| %>
@@ -11,9 +11,9 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_field :content %>
+  <div style="margin-bottom: 10px;">
+    <%= form.label :content, "Comentario", style: "display: block; font-weight: bold;" %>
+    <%= form.text_field :content , class: "form-control" %>
   </div>
 
  <!--
@@ -40,12 +40,7 @@
     <%= form.hidden_field :publication_id, value: current_user.id %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div style="margin-top: 10px;">
+    <%= form.submit "Enviar", class: "btn btn-primary" %>
   </div>
 <% end %>
-
-
-
-
-

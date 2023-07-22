@@ -1,14 +1,16 @@
 <!-- <p style="color: green"><%= notice %></p> -->
 
-<h1>Publications</h1>
+<div class="positionimage">
+    <h1 class="titulo">Publicaciones</h1> <br>
+    <%= link_to "Nueva publicación", new_publication_path, class:"btn btn-dark" %>
+    <div id="publications" class="positionimage">
+      <% @publications.each do |publication| %>
+        <%= render publication %>
+        <p>
+      <b> <%= link_to "Mostrar esta publicación", publication, class:"btn btn-primary" %> </b>
+        </p>
+      <% end %>
+    </div>
 
-<div id="publications">
-  <% @publications.each do |publication| %>
-    <%= render publication %>
-    <p>
-      <%= link_to "Show this publication", publication %>
-    </p>
-  <% end %>
+    <%= link_to "Nueva publicación", new_publication_path, class:"btn btn-dark" %> <br> <br>
 </div>
-
-<%= link_to "New publication", new_publication_path %>

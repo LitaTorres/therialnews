@@ -2,39 +2,42 @@
 
 <%= render @publication %>
 
-<div>
+<div class="positionimage ">
 
-  <% if user_signed_in? %>
-<!--  < if current_user.admin? || current_user.id == @publication.user_id >se agrega tb lo de curren user admin para que tb pueda ver los enlaces-->
-    <% if current_user.id == @publication.user_id %>
-        <%= link_to "Editar this publication (enlace vista show de publication)", edit_publication_path(@publication) %> |
-        <%= button_to "Destroy this publication(enlace vista show de publication)", @publication, method: :delete %>
+    <% if user_signed_in? %>
+  <!--  < if current_user.admin? || current_user.id == @publication.user_id >se agrega tb lo de curren user admin para que tb pueda ver los enlaces-->
+      <% if current_user.id == @publication.user_id %>
+          <%= link_to "Editar esta publicación", edit_publication_path(@publication), class:"btn btn-primary" %> |
+          <%= button_to "Eliminar esta publicación", @publication, method: :delete , class:"btn btn-primary"%>
+      <% end %>
     <% end %>
-  <% end %>
+    <br>
+    <%= link_to "Volver a las publicaciones", publications_path, class:"btn btn-dark" %>
+  </div>
 
-  <%= link_to "Volver to publications", publications_path %>
+  <div class="positionimage">
+    <% if @comments.any? %>
+      <% @comments.each do |comment| %>
+          <p><strong>Usuario: </strong><%= comment.user.name %></p>
+          <p><strong>Comentario: </strong><%= comment.content %></p>
+          <%= link_to "Editar este comentario", edit_comment_path(comment), class:"btn btn-secondary"%> <br> <!--- esto para editar y eliminar comentarios-->
+          <%= button_to "Eliminar este comentario", comment, method: :delete , class:"btn btn-secondary" %>
+      <% end %>
+    <% else %>
+      <p> <b>No hay comentarios aún para esta publicación.</b></p>
+    <% end %>
+<br>
+    <%= form_with(model: @comment, url: publication_comments_path(@publication)) do |form| %>
+      <div class="showformulario">
+        <%= form.label :content, "Atrévete a comentar", style: "display: block" %>
+        <%= form.text_area :content %>
+      </div>
+
+      <div class="positionimage", style="margin-top: 10px;">
+        <%= form.submit "Enviar", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    <br><br>
 </div>
-
-<% if @comments.any? %>
-  <% @comments.each do |comment| %>
-      <p><strong>Nombreee: </strong><%= comment.user.name %></p>
-      <p><strong>Contenido: </strong><%= comment.content %></p>
-      <%= link_to "Editar este comentario", edit_comment_path(comment) %> <!--- esto para editar y eliminar comentarios-->
-      <%= button_to "Destroy este comentario", comment, method: :delete %>
-  <% end %>
-<% else %>
-  <p>No hay comentarios aún para esta publicación.</p>
-<% end %>
-
-<%= form_with(model: @comment, url: publication_comments_path(@publication)) do |form| %>
-  <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div>
-    <%= form.submit "Save" %>
-  </div>
-<% end %>
 
 

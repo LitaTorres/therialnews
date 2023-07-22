@@ -1,9 +1,9 @@
-<h1>Editinggg comment</h1>
+<h1>Edita tú comentario </h1>
 
 <%= form_with(model: @comment) do |form| %>
   <% if @comment.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+      <h2><%= pluralize(@comment.errors.count, "error") %> Prohibido guardar este comentario: </h2>
 
       <ul>
         <% @comment.errors.each do |error| %>
@@ -14,29 +14,31 @@
   <% end %>
 
   <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_field :content %>
+    <%= form.label :content, "Comentario", style: "display: block" %>
+    <%= form.text_field :content, class: "form-control" %> 
   </div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+  <div style="margin-bottom: 10px;">
+    <%= form.label :user_id, "Id del Usuario", style: "display: block" %>
+    <%= form.text_field :user_id, class: "form-control" %> 
   </div>
 
-  <div>
-    <%= form.label :publication_id, style: "display: block" %>
-    <%= form.text_field :publication_id %>
+  <div style="margin-bottom: 10px;">
+    <%= form.label :publication_id, "Id de la publicación", style: "display: block" %>
+    <%= form.text_field :publication_id, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div style="margin-top: 10px;">
+    <%= form.submit "Enviar", class: "btn btn-primary" %>
   </div>
 <% end %>
 
 <br>
 
 <div>
-  <%= link_to "Show this comment", @comment %> |
-  <%= link_to "Back to publicationessss", publications_path %>
+  <%= link_to "Muestra este comentario", @comment , class:"btn btn-secondary"%> 
+  <%= link_to "Volver a todas las publicaciones", publications_path, class:"btn btn-dark" %>
 </div>
+<br>
 
+<%= image_tag '3.gif', style: "width: 800px; height: 500px;" %> <br><br>

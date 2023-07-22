@@ -1,9 +1,17 @@
-<h1>New publication</h1>
 
-<%= render "form", publication: @publication %>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <%= image_tag '2pbotones.png', class: "img-fluid", alt:"therialnews", style: "width: 900px; height: 500px; object-fit: cover; margin-bottom: 40px;" %>
+    </div>
 
-<br>
-
-<div>
-  <%= link_to "Back to publications", publications_path %>
+    <div class="col-4">
+      <h1>Nueva Publicación</h1>
+      <%= render "form", publication: @publication %>
+      <br>
+      <div>
+        <%= link_to "Volver a todas las publicaciones", publications_path, class:"btn btn-dark" %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -19,7 +19,7 @@ class UsersController < Devise::ConfirmationsController
     
     def authorize_admin
         unless current_user.admin?
-        redirect_to publications_path, notice: "No estás autorizado para esta acción."
+        redirect_to publications_path, notice: "No estás autorizado para esto."
         end
     end
 

@@ -1,10 +1,18 @@
-<h1>Editing publication</h1>
 
-<%= render "form", publication: @publication %>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <%= image_tag '6.jpg', class: "img-fluid", alt:"editar", style: "width: 900px; height: 500px; object-fit: cover; margin-bottom: 40px;" %>
+    </div>
 
-<br>
-
-<div>
-  <%= link_to "Show this publication", @publication %> |
-  <%= link_to "Back to publications", publications_path %>
+    <div class="col-4">
+      <h1>Editar la publicación</h1>
+      <%= render "form", publication: @publication %>
+      <br>
+      <div>
+        <%= link_to "Mostrar esta publicación", @publication , class:"btn btn-secondary"%>  <br> <br>
+        <%= link_to "Volver a todas las publicaciones", publications_path, class:"btn btn-dark" %> <br><br>
+      </div>
+    </div>
+  </div>
 </div>

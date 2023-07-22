@@ -1,17 +1,8 @@
+
 <div id="<%= dom_id comment %>">
-  <p>
-    <strong>Contentt:</strong>
-    <%= comment.content %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= comment.user_id %>
-  </p>
-
-  <p>
-    <strong>Publication:</strong>
-    <%= comment.publication_id %>
-  </p>
-
-</div>
+  <ul class="list-group">
+    <li class="list-group-item active" aria-current="true"> <p class="publi2"></p> <strong>ID del Usuario:</strong> <%= comment.user_id %> </p> </li>
+    <li class="list-group-item">  <p> <b> <strong>Comentario:</strong> <%= comment.content %> </b> </p></li>
+    <li class="list-group-item">  <p></p>  <strong>ID de la Publicación:</strong> <%= comment.publication_id %> </p></li>
+  </ul>
+</div> 

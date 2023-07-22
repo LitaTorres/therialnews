@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
     def authorize_request(kind = nil) #se define este metodo para autorizar una accion x un usuario
         unless kind.include?(current_user.role) || current_user.admin? #Asi el admin tiene acceso a todo
-            redirect_to publications_path, notice: " Yo no estas autorizado para esta accion appcontroller"
+            redirect_to publications_path, notice: " No estás autorizado para realizar esta acción"
         end
     end
 end

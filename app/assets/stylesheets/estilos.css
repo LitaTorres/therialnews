@@ -1,0 +1,52 @@
+
+
+.nav-link {
+    color: black! important;
+    font-weight: bold! important;
+    margin-right: 10px;
+}
+
+.positionimage {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    margin-top: 50px;
+}
+
+.reglas {
+    font-size: 20px;
+    background-color: #5fa0c7;
+    color: black
+}
+
+.footer {
+    text-align: center; 
+    height: 170px;
+}
+
+.titulo {
+    font-size: 50px;
+}
+
+.publi2 {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+}
+
+.texto2{
+    font-size: 20px;
+}
+
+.texto1{
+    font-size: 35px;
+}
+
+.showformulario {
+    text-align: center; 
+    font-size: 25px;
+    font-weight: bold;
+}

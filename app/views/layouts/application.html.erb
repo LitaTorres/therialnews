@@ -9,46 +9,49 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Pacifico&family=Playfair:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&family=Metal+Mania&family=Open+Sans:wght@400;700&family=Pacifico&family=Playfair:wght@300&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
   </head>
 
   <body>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-dark-subtle">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar para el logo</a>
+        <a class="navbar-brand ms-5" href="#"> <%= image_tag '0.png', style: "width: 100px; height: 100px;" %> </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <%= link_to "home", homes_index_path, class:"nav-link" %>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item  border border-secondary">
+              <%= link_to "INICIO", homes_index_path, class:"nav-link" %>
             </li>
 
             <% if user_signed_in? %>
-                  <li class="nav-item"> <!-- clic al name y se va al editar-->
+                  <li class="nav-item border border-secondary"> <!-- clic al name y se va al editar-->
                     <%= link_to current_user.name, edit_user_registration_path, class:"nav-link" %> </a>
                   </li>
-                  <li class="nav-item">
-                    <%= link_to "Publicaciones", publications_path, class:"nav-link" %>
+                  <li class="nav-item border border-secondary">
+                    <%= link_to "PUBLICACIONES", publications_path, class:"nav-link" %>
                   </li> <!---recordar que el curren es como un link to-->
                   <% if current_user.admin? %> 
-                  <li class="nav-item"> <!-- el current user es el que proporciona el id de la url-->
-                    <%= link_to "Asignar roles", edit_role_user_path(current_user), class:"nav-link" %>
+                  <li class="nav-item  border border-secondary"> <!-- el current user es el que proporciona el id de la url-->
+                    <%= link_to "ASIGNAR ROLES", edit_role_user_path(current_user), class:"nav-link" %>
                   </li>
                 <% end %> 
-                  <li class="nav-item">
-                    <%= link_to "Salir", destroy_user_session_path, class:"nav-link" %>
+                  <li class="nav-item  border border-secondary">
+                    <%= link_to "SALIR", destroy_user_session_path, class:"nav-link" %>
                   </li>
             <% else %>
-                  <li class="nav-item">
-                    <%= link_to "Publicaciones", publications_path, class:"nav-link" %>
+                  <li class="nav-item  border border-secondary">
+                    <%= link_to "PUBLICACIONES", publications_path, class:"nav-link" %>
                   </li>
-                  <li class="nav-item">
-                    <%= link_to "Iniciar sesión", new_user_session_path, class:"nav-link" %>
+                  <li class="nav-item  border border-secondary">
+                    <%= link_to "INICIAR SESIÓN", new_user_session_path, class:"nav-link" %>
                   </li>
-                  <li class="nav-item">
-                    <%= link_to "Registro", new_user_registration_path, class:"nav-link" %>
+                  <li class="nav-item  border border-secondary">
+                    <%= link_to "REGISTRARME", new_user_registration_path, class:"nav-link" %>
                   </li>
             <% end %>
           </ul>
@@ -56,13 +59,34 @@
       </div>
     </nav>
 
-
     <div class="container"> 
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
 
       <%= yield %>
     </div>
+
+    <footer class="footer bg-dark-subtle">
+      <div class="text-center p-3">
+        © 2023 The Rial News:
+        <section class="text-dark">
+          Todos los derechos reservados
+        </section>
+        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i
+            class="fab fa-twitter"></i></a>
+  
+        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i
+            class="fab fa-google"></i></a>
+        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i
+            class="fab fa-instagram"></i></a>
+  
+        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i
+            class="fab fa-facebook-f"></i></a>
+  
+        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark"><i
+            class="fab fa-github"></i></a>
+      </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"> </script>
   </body>

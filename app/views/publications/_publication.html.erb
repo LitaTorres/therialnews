@@ -1,21 +1,22 @@
+<br>
 <div id="<%= dom_id publication %>">
-  <p>
-    <strong>Title:</strong>
-    <%= publication.title %>
+  <h2 class="publi2 texto1"> <b>
+    <strong></strong>
+    <%= publication.title %> </b>
+  </h2>
+
+  <p class="publi2">
+    <strong></strong>
+    <img src="<%= publication.image %>" alt="Imagenurl" width=500px heigh="400px">
+  </p>  
+
+  <p class="publi2 texto2"> 
+    <strong>Descripción:</strong>
+    <%= publication.description %> 
   </p>
 
-  <p>
-    <strong>Image:</strong>
-    <%= image_tag publication.image, size: "300x300" %> 
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= publication.description %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
+  <p class="publi2">
+    <strong>Usuario:</strong>
     <%= publication.user.email %>
   </p>
 
