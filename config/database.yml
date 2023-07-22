@@ -82,6 +82,4 @@ test:
 #
 production:
   <<: *default
-  database: therialnews_production
-  username: therialnews
-  password: <%= ENV["THERIALNEWS_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>

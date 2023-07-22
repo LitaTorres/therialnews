@@ -1,9 +1,9 @@
-<h1>Editar Rol de Usuario</h1>
+<h1>Editar Rol de Usuario</h1><br><br>
 
 <%= form_for @user, url: update_role_user_path(@user), method: :patch do |f| %>
-  <%= f.select :role, User.roles.keys.map { |r| [r.titleize, r] }, {}, class: 'form-control' %>
+  <%= f.select :role, User.roles.keys.map { |r| [r.titleize, r] }, {}, class: 'form-control' %>  <br><br>
   <%= f.submit 'Guardar', class: 'btn btn-primary' %>
-<% end %>
+<% end %> <br><br>
 
 <p> Profeeeeee esto no salió, iba bien asignando roles por medio de pgAdmin pero <br> 
 como la idea era hacerlo acá, busque ayuda para este código pero está re dificil <br> 
@@ -12,19 +12,3 @@ y le puedo asignar un rol, pero ya hacer lo del select para seleccionar en si al
 
 <%= image_tag '7.gif', style: "width: 800px; height: 500px;" %> <br><br>
 
-
-<!--
-<%= form_for @user, url: update_role_user_path(user_id: @user.id), method: :patch do |f| %>
-
-
-<div class="field">
-  <%= f.label :name %><br />
-  <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-</div>
-
-
-<div class="actions">
-  <%= f.submit "Sign up" %>
-</div>
-<% end %>
---->
