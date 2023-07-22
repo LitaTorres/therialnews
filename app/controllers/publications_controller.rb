@@ -6,13 +6,13 @@ class PublicationsController < ApplicationController
   end
 
   before_action only: [:edit, :update, :destroy] do
-    authorize_request(["author", "admin"]) #solo admin y autor pueden editar actualizar y destruir
+    authorize_request(["normal_user", "author", "admin"]) #solo admin y autor pueden editar actualizar y destruir
   end
 
-  #def authorize_request(kind = nil)
-   # unless kind.include?(current_user.role) || current_user.admin? #Asi el admin tiene acceso a todo
-    #    redirect_to publications_path, notice: "tuu no estas autorizado para esta accion"
-    #end
+  def authorize_request(kind = nil)
+    unless kind.include?(current_user.role) || current_user.admin? #Asi el admin tiene acceso a todo
+       redirect_to publications_path, notice: "Lamentablemente no estás autorizado para esta acción"
+    end
   #end
 
   # GET /publications or /publications.json
